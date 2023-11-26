@@ -1,6 +1,11 @@
 from data import MENU, resources
+import os
 
 profit = 0
+
+
+def clear():
+    os.system("cls" if os.name == "nt" else "clear")
 
 
 def is_resource_sufficient(order_ingredients):
@@ -15,10 +20,14 @@ def is_resource_sufficient(order_ingredients):
 def process_coins():
     """Returns the total calculated from coins inserted."""
     print("Please insert coins.")
-    total = int(input("how many quarters?: ")) * 0.25
-    total += int(input("how many dimes?: ")) * 0.1
-    total += int(input("how many nickles?: ")) * 0.05
-    total += int(input("how many pennies?: ")) * 0.01
+    total = 0
+    try:
+        total += int(input("how many quarters?: ")) * 0.25
+        total += int(input("how many dimes?: ")) * 0.1
+        total += int(input("how many nickles?: ")) * 0.05
+        total += int(input("how many pennies?: ")) * 0.01
+    except ValueError:
+        print("Invalid input. Please enter an integer.")
     return total
 
 
@@ -46,6 +55,7 @@ is_on = True
 
 while is_on:
     choice = input("​What would you like? (espresso/latte/cappuccino): ")
+    clear()
     if choice == "off":
         is_on = False
     elif choice == "report":
